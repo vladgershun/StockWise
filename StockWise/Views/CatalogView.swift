@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct CatalogView: View {
+    
+    @EnvironmentObject var vm: ShoppingVM
+    
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(vm.catalogItems, id:\.self) { value in
+                    Text("\(value)")
+                        .frame(width: 200, height: 200)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .fill(.red)
+                        }
+                }
+                
+            }
+            .padding()
+        }
+        .scrollIndicators(.never)
+        
+        
+        
+        
     }
 }
 

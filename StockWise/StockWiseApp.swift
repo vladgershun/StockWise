@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct StockWiseApp: App {
+    
+    @StateObject var vm: ShoppingVM = .init()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabsView()
         }
+        .environmentObject(vm)
     }
 }

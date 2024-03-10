@@ -9,16 +9,28 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        GeometryReader { geo in
+            HStack {
+                CatalogView()
+                    .frame(maxWidth: geo.size.width * 0.7, maxHeight: .infinity)
+//                    .border(.red)
+                
+                RoundedRectangle(cornerRadius: 25.0, style: .continuous)
+                    .frame(maxWidth: 1, maxHeight: .infinity)
+                
+                BasketView()
+                    .frame(maxWidth: geo.size.width * 0.3, maxHeight: .infinity)
+//                    .border(.blue)
+            }
+            .padding() 
+            
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
     }
 }
 
 #Preview {
     HomeView()
 }
+

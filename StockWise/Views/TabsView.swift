@@ -1,5 +1,5 @@
 //
-//  TabView.swift
+//  TabsView.swift
 //  StockWise
 //
 //  Created by Vlad Gershun on 3/9/24.
@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct TabsView: View {
     var body: some View {
-        TabView {
-            
-            HomeView()
-                .tabItem { Label("Catalog", image: "sun.fill") }
-            ShoppingListView()
-                .tabItem { Label("Catalog", image: "sun.fill") }
-        }
-            
         
+        TabView {
+            HomeView()
+                .tabItem { Label("Catalog", systemImage: "carrot.fill") }
+            ShoppingListView()
+                .tabItem { Label("Shopping List", systemImage: "cart.fill") }
+            
+        }
+        .navigationViewStyle(.stack)
     }
 }
 
 #Preview {
-    TabView()
+    TabsView()
 }
