@@ -19,3 +19,4 @@ struct StockWiseApp: App {
         .environmentObject(vm)
     }
 }
+

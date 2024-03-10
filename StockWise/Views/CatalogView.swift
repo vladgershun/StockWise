@@ -14,22 +14,21 @@ struct CatalogView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        
-        ScrollView {
-            LazyVGrid(columns: columns) {
-                ForEach(vm.catalogItems, id:\.self) { value in
-                    Text("\(value)")
-                        .frame(width: 200, height: 200)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(.red)
-                        }
+        GeometryReader { geo in
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(vm.catalogItems) { item in
+                        CatalogGridItemView(item: item)
+                        
+                    }
+                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.3)
                 }
-                
+                .padding()
             }
-            .padding()
+            .scrollIndicators(.never)
         }
-        .scrollIndicators(.never)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
         
         
         

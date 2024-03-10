@@ -9,7 +9,7 @@ import Foundation
 
 final class ShoppingVM: ObservableObject {
     
-    @Published var catalogItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    @Published var catalogItems: [CatalogItem] = CatalogItem.mochItems
     @Published var basketItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     @Published var shoppingList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
