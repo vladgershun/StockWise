@@ -11,6 +11,7 @@ struct HomeView: View {
     var body: some View {
         GeometryReader { geo in
             HStack {
+                
                 CatalogView()
                     .frame(maxWidth: geo.size.width * 0.7, maxHeight: .infinity)
 //                    .border(.red)

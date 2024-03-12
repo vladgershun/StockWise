@@ -12,19 +12,45 @@ struct CatalogGridItemView: View {
     var item: CatalogItem
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 20, style: .continuous)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay {
-                VStack {
-                    Text(item.name)
-                    Text(item.price, format: .number)
-                    Text(item.foundIn)
-                    Text(item.category)
-                }
-                
+        ZStack(alignment: .topTrailing) {
+            
+            AsyncImage(url: URL(string: "http://localhost:8080/images/\(item.id)"), scale: 1) { image in
+                image
+                    .resizable()
+                //                            .scaledToFill()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped()
+            } placeholder: {
+                Image(systemName: "photo.on.rectangle")
+                    .resizable()
+//                ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .aspectRatio(1.0, contentMode: .fit)
             }
-            .background(.ultraThinMaterial)
-            .padding()
+            
+            
+        }
+        .overlay (details, alignment: .bottom)
+        .cornerRadius(10)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .stroke(Color.secondary, lineWidth: 3)
+        }
+        .frame(width: 200, height: 200)
+        
+        
+    }
+    
+    private var details: some View {
+        VStack {
+            Text(item.name)
+                .frame(maxWidth: .infinity)
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.black.opacity(0.7))
+        }
+        
     }
 }
 
