@@ -29,6 +29,12 @@ struct BasketView: View {
                 .padding()
             }
             .scrollIndicators(.never)
+            
+            Button("Add To Shopping List") {
+                // no-op
+            }
+            .buttonStyle(.borderedProminent)
+
         }
         
     }

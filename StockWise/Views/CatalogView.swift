@@ -21,7 +21,7 @@ struct CatalogView: View {
                         CatalogGridItemView(item: item)
                         
                     }
-                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.3)
+                    .frame(width: geo.size.width * 0.3)
                 }
                 .padding()
             }

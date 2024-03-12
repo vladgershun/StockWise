@@ -10,33 +10,67 @@ import SwiftUI
 struct CatalogGridItemView: View {
     
     var item: CatalogItem
+    @State private var count  = 0
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            
-            AsyncImage(url: URL(string: "http://localhost:8080/images/\(item.id)"), scale: 1) { image in
-                image
-                    .resizable()
-                //                            .scaledToFill()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .clipped()
-            } placeholder: {
-                Image(systemName: "photo.on.rectangle")
-                    .resizable()
-//                ProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .aspectRatio(1.0, contentMode: .fit)
+        VStack {
+            ZStack(alignment: .topTrailing) {
+                
+                AsyncImage(url: URL(string: "http://localhost:8080/images/\(item.id)"), scale: 1) { image in
+                    image
+                        .resizable()
+                    //                            .scaledToFill()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .clipped()
+                } placeholder: {
+                    Image(systemName: "photo.on.rectangle")
+                        .resizable()
+                    //                ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .aspectRatio(1.0, contentMode: .fit)
+                }
+                
+                
             }
+            .overlay (details, alignment: .bottom)
+            .cornerRadius(10)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .stroke(Color.secondary, lineWidth: 3)
+            }
+            .frame(width: 200, height: 200)
             
             
+            HStack {
+                Button {
+                    count += 1
+                } label: {
+                    Image(systemName: "plus.app.fill")
+                }
+                .font(.title)
+                .padding([.leading, .trailing])
+                .tint(.green)
+                
+                
+                
+                Text(count, format: .number)
+                    .font(.title)
+                    .padding([.leading, .trailing])
+                
+                
+                Button {
+                    count -= 1
+                } label: {
+                    Image(systemName: "minus.square.fill")
+                }
+                .font(.title)
+                .padding([.leading, .trailing])
+                .tint(.red)
+                
+            }
         }
-        .overlay (details, alignment: .bottom)
-        .cornerRadius(10)
-        .overlay {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .stroke(Color.secondary, lineWidth: 3)
-        }
-        .frame(width: 200, height: 200)
+        
+
         
         
     }
